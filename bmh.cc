@@ -3,10 +3,11 @@
 #include <string>
 #include <stdlib.h> 
 #include <fstream>
+#include <chrono>
 using namespace std;
 
 int  hexToDecimal(const char* hex);
-const int MAX_SIZE = 1000000;
+const int MAX_SIZE = 10000000;
 # define NO_OF_CHARS 256
  
 // A utility function to get maximum of two integers
@@ -79,6 +80,30 @@ int main()
     
     char pat[] = "pattern";
 
+    auto start = chrono::steady_clock::now();
+
     search(txt, pat);
+
+    auto end = chrono::steady_clock::now();
+    
+    cout << " " << endl;
+    cout << "BMH execution:" << endl;
+
+    cout << "Elapsed time in nanoseconds : "
+        << chrono::duration_cast<chrono::nanoseconds>(end - start).count()
+        << " ns" << endl;
+ 
+    cout << "Elapsed time in microseconds : "
+        << chrono::duration_cast<chrono::microseconds>(end - start).count()
+        << " µs" << endl;
+ 
+    cout << "Elapsed time in milliseconds : "
+        << chrono::duration_cast<chrono::milliseconds>(end - start).count()
+        << " ms" << endl;
+ 
+    cout << "Elapsed time in seconds : "
+        << chrono::duration_cast<chrono::seconds>(end - start).count()
+        << " sec";
+
     return 0;
 }
