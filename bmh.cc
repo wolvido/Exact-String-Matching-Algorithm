@@ -1,9 +1,12 @@
-/* Program for Bad Character Heuristic of Boyer Moore String Matching Algorithm */
- 
-# include <limits.h>
 # include <string.h>
-# include <stdio.h>
- 
+#include <iostream>
+#include <string>
+#include <stdlib.h> 
+#include <fstream>
+using namespace std;
+
+int  hexToDecimal(const char* hex);
+const int MAX_SIZE = 1000000;
 # define NO_OF_CHARS 256
  
 // A utility function to get maximum of two integers
@@ -59,8 +62,23 @@ void search(char *txt, char *pat)
 /* Driver program to test above funtion */
 int main()
 {
-    char txt[] = "ABAAABCD";
-    char pat[] = "ABC";
+    ifstream read;
+		read.open("example.txt");
+					
+			char* txt = new char[MAX_SIZE];
+						
+			while (!read.eof())
+			{	
+				for (int i = 0; i <= MAX_SIZE; i++)
+				{
+
+						read >> txt[i];
+						
+				}
+			}
+    
+    char pat[] = "pattern";
+
     search(txt, pat);
     return 0;
 }

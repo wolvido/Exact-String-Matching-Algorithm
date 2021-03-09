@@ -1,13 +1,18 @@
 # include <string.h>
 #include <iostream>
 #include <string>
+#include <stdlib.h> 
+#include <fstream>
 using namespace std;
- 
+
+int  hexToDecimal(const char* hex);
+const int MAX_SIZE = 1000000;
 # define NO_OF_CHARS 256
  
 // A utility function to get maximum of two integers
 int max(int a, int b)
-{    return (a > b) ? a : b;
+{    
+    return (a > b) ? a : b;
 }
 // simplified character heuristic
 void badCharHeuristic(char *str, int size, int badchar[NO_OF_CHARS])
@@ -27,11 +32,10 @@ void search(char *txt, char *pat)
     int s = 0; // s is shift of the pattern with respect to text
     int i;
     int temp = 0;
+    int j;
 
     while (s <= n )
     {
-        int j = 0;
-        
         for (i = 0; i < m; i++){
 
             if (txt[s] == pat[i])
@@ -44,7 +48,7 @@ void search(char *txt, char *pat)
         while (pat[j] == txt[s + j])
             j++;
 
-        if (j >= m)
+        if (j > m)
         {
             printf("\n pattern occurs at shift = %d", s);
             s += n;
@@ -53,12 +57,27 @@ void search(char *txt, char *pat)
         s += m;
     }
 }
+
 /* Driver program to test above funtion */
 int main()
 {
-    char txt[] = "xxxxxxxcvsd";
-    char pat[] = "cvsd";
+    ifstream read;
+		read.open("example.txt");
+					
+			char* txt = new char[MAX_SIZE];
+						
+			while (!read.eof())
+			{	
+				for (int i = 0; i <= MAX_SIZE; i++)
+				{
+
+						read >> txt[i];
+						
+				}
+			}
+			  
+    char pat[] = "pattern";
     
-    search(txt, pat);
+    search( txt, pat);
     return 0;
 }
