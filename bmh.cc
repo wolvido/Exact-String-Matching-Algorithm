@@ -49,8 +49,8 @@ void search(char *txt, char *pat)
  
         if (j < 0)
         {
+
             printf("\n pattern occurs at shift = %d", s);
- 
             s += (s + m < n) ? m - badchar[txt[s + m]] : 1;
  
         }
